@@ -9,6 +9,7 @@ export interface Props {
     stylesProp?: any;
     story: any;
     key?: number;
+    onPress: () => void;
 }
 
 const StoryFeedItem: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const StoryFeedItem: React.FC<Props> = ({
     story,
     key,
     stylesProp,
+    onPress,
 }): React.ReactElement => {
     let image;
     if (story.urlToImage && story.urlToImage !== '') {
@@ -23,13 +25,15 @@ const StoryFeedItem: React.FC<Props> = ({
     }
     const hoursSincePublished = msToHours(Date.now() - Date.parse(story.publishedAt));
     return (
-        <Card stylesProp={[stylesProp, styles.Container]} key={key}>
-            {image}
-            <View style={[styles.Details]}>
-                <Text numberOfLines={2} style={styles.Title}>{story.title}</Text>
-                <View style={styles.SourceAgeContainer}>
-                    <Text style={styles.Source}>{story.source.name}</Text>
-                    <Text style={styles.Age}> {Math.round((hoursSincePublished * 10)) / 10} hours ago</Text>
+        <Card onPress={onPress} stylesProp={[stylesProp, styles.Container]} key={key}>
+            <View style={[styles.ViewContainer]}>
+                {image}
+                <View style={[styles.Details]}>
+                    <Text numberOfLines={2} style={styles.Title}>{story.title}</Text>
+                    <View style={styles.SourceAgeContainer}>
+                        <Text style={styles.Source}>{story.source.name}</Text>
+                        <Text style={styles.Age}> {Math.round((hoursSincePublished * 10)) / 10} hours ago</Text>
+                    </View>
                 </View>
             </View>
         </Card>

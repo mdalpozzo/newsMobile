@@ -6,7 +6,7 @@ import Story from 'Components/Story';
 const Navigator: NavigationContainer = createStackNavigator(
     {
         Home: {screen: Home},
-        StoryDetail: {screen: Story},
+        Story: {screen: Story},
         TestComponentB: {screen: TestComponentB},
     },
     {
