@@ -26,6 +26,14 @@ class Home extends Component<Props> {
         header: null,
     };
 
+    private feedItemOnPress = (story: Story) => {
+        return () => {
+            this.props.navigation.navigate('Story', {
+                story: story,
+            });
+        }
+    };
+
     render () {
         const {
             stories,
@@ -51,6 +59,7 @@ class Home extends Component<Props> {
                     <FlatList
                         data={stories}
                         renderItem={({item}) => <StoryFeedItem
+                            onPress={this.feedItemOnPress(item)}
                             story={item}
                         />}
                         keyExtractor={(item, index) => index.toString()}
