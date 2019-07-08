@@ -8,7 +8,6 @@ const cacheExpiryTime = expiryInMinutes * 1000 * 60;
 
 export const getNewsAPI = async (): Promise<any> => {
     let data;
-    
     try {
         const dataAsString = await AsyncStorage.getItem('@newsData');
         if (dataAsString) {
@@ -18,20 +17,20 @@ export const getNewsAPI = async (): Promise<any> => {
             }
         }
     } catch (error) {
-        // handle error
+        console.log(error);
     }
         
     if (!data) {
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${config.newsKey}`);
-        data = response.data.articles.filter((story: Story) => story.source.name !== 'Youtube.com');
-        const dataWithExp = {
-            expires: Date.now() + cacheExpiryTime,
-            data,
-        }
         try {
+            const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${config.newsKey}`);
+            data = response.data.articles.filter((story: Story) => story.source.name !== 'Youtube.com');
+            const dataWithExp = {
+                expires: Date.now() + cacheExpiryTime,
+                data,
+            }
             await AsyncStorage.setItem('@newsData', JSON.stringify(dataWithExp));
         } catch (error) {
-            // handle error
+            console.log(error);
         }
     }
     return data;

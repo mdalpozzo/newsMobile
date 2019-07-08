@@ -5,6 +5,7 @@ export const cc = createNamespacedConstFactory(NAME_SPACE);
 export interface State {
     view: string;
     stories: Stories;
+    story: Story | null;
 }
 
 export interface NestedState {
@@ -32,6 +33,7 @@ export interface Stories extends Array<Story> {
 // Reducer Cases
 export const SET_VIEW = cc('SET_VIEW');
 export const GET_NEWS = cc('GET_NEWS');
+export const SET_STORY = cc('SET_STORY');
 
 // View Cases
 export const HOME = cc('HOME');
