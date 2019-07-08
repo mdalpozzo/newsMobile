@@ -16,6 +16,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         flex: 7,
     },
+    MainImage: {
+        height: '100%',
+    },
+    MainText: {
+        bottom: 40,
+        position: 'absolute',
+        justifyContent: 'center',
+        backgroundColor: '#919191a9',
+        marginHorizontal: 20,
+    },
+    MainTextTitle: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: '600',
+    },
 });
 
 export default styles;

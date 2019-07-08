@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     Age: {
         fontSize: 10,
-    }
+    },
 });
 
 export default styles;

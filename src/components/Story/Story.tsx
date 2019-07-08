@@ -1,20 +1,19 @@
 import * as React from 'react';
 import {View, Text, Image} from 'react-native';
-import styles from './StoryFeedItem.styles';
+import styles from './Story.styles';
 import Card from 'Components/Card';
 import {msToHours} from 'Utils/misc';
+import DefaultLayout from '../DefaultLayout';
 
 export interface Props {
     children?: React.ReactNode;
     stylesProp?: any;
     story: any;
-    key?: number;
 }
 
 const StoryFeedItem: React.FC<Props> = ({
     children,
     story,
-    key,
     stylesProp,
 }): React.ReactElement => {
     let image;
@@ -23,16 +22,9 @@ const StoryFeedItem: React.FC<Props> = ({
     }
     const hoursSincePublished = msToHours(Date.now() - Date.parse(story.publishedAt));
     return (
-        <Card stylesProp={[stylesProp, styles.Container]} key={key}>
-            {image}
-            <View style={[styles.Details]}>
-                <Text numberOfLines={2} style={styles.Title}>{story.title}</Text>
-                <View style={styles.SourceAgeContainer}>
-                    <Text style={styles.Source}>{story.source.name}</Text>
-                    <Text style={styles.Age}> {Math.round((hoursSincePublished * 10)) / 10} hours ago</Text>
-                </View>
-            </View>
-        </Card>
+        <DefaultLayout>
+            <Text>STORY</Text>
+        </DefaultLayout>
     );
 };
 

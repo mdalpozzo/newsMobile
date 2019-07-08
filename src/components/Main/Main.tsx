@@ -24,6 +24,7 @@ import { connect } from 'react-redux';
 import Home from 'Components/Home';
 import TestComponentB from 'Components/TestComponentB';
 import NavBar from 'Components/NavBar';
+import FeedNavigator from 'Components/FeedNavigator';
 
 interface Props {
     view: string;
@@ -51,9 +52,8 @@ class Main extends Component<Props> {
         switch (view) {
             case HOME:
                 currentView = (
-                    <Home
-                        stories={stories}
-                    ></Home>
+                    // <Text>HELLO</Text>
+                    <FeedNavigator />
                 );
                 break;
             case TEST:

@@ -5,12 +5,13 @@ import {
 } from 'typesafe-actions';
 import {
     SET_VIEW,
-    Stories,
     GET_NEWS,
+    SET_STORY,
+    Stories,
+    Story,
 } from './Main.types';
 import { Dispatch, AnyAction } from 'redux';
 import {getNewsAPI} from '../../api/api';
-import { resetWarningCache } from 'prop-types';
 
 export const setView = createStandardAction(SET_VIEW)<string>();
 
@@ -22,9 +23,12 @@ export const getNews = () => async (dispatch: Dispatch<AnyAction>): Promise<void
     })
 };
 
+export const setStory = createStandardAction(SET_STORY)<Story>();
+
 export const actions = {
     setView,
     getNews,
+    setStory,
 };
 
 export type ActionTypes = ActionType<typeof actions | PayloadAC<string, Stories>>;

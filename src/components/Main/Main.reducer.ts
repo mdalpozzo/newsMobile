@@ -3,14 +3,17 @@ import {
     State,
     SET_VIEW,
     GET_NEWS,
+    SET_STORY,
     HOME,
     Stories,
+    Story,
 } from './Main.types';
 import { ActionTypes } from './Main.actions';
 
 export const defaultState: State = {
     view: HOME,
     stories: [],
+    story: null,
 };
 
 const reducer: Reducer<State, ActionTypes> = (state: State = defaultState, {type, payload}: ActionTypes): State => {
@@ -25,6 +28,12 @@ const reducer: Reducer<State, ActionTypes> = (state: State = defaultState, {type
             state = {
                 ...state,
                 stories: payload as Stories,
+            };
+            break;
+        case SET_STORY:
+            state = {
+                ...state,
+                story: payload as Story,
             };
             break;
     }
