@@ -15,6 +15,7 @@ import { selectStories } from 'Components/Main/Main.selectors';
 import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
 import { NavigationScreenProp, NavigationRoute } from 'react-navigation';
+import ThemeContext from 'Components/Theme';
 
 interface Props {
     stories: Stories;
@@ -39,6 +40,7 @@ class Home extends Component<Props> {
             stories,
             navigation,
         } = this.props as Props;
+        let Theme = this.context;
         let mainStory: Story;
         let mainStoryComponent;
         if (stories[1]) {
@@ -55,7 +57,7 @@ class Home extends Component<Props> {
         return (
             <DefaultLayout>
                 {mainStoryComponent}
-                <View style={styles.Stories}>
+                <View style={[styles.Stories, {backgroundColor: Theme.Feed.backgroundColor}]}>
                     <FlatList
                         data={stories}
                         renderItem={({item}) => <StoryFeedItem
@@ -69,6 +71,7 @@ class Home extends Component<Props> {
         );
     }
 }
+Home.contextType = ThemeContext;
 
 const mapStateToProps = (state: NestedState) => ({
     stories: selectStories(state),

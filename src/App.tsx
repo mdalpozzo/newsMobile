@@ -8,7 +8,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={store}>
-        <Main></Main>
+          <Main></Main>
       </Provider>
     );
   }

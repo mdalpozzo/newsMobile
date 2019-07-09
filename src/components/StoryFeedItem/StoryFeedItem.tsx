@@ -3,6 +3,7 @@ import {View, Text, Image} from 'react-native';
 import styles from './StoryFeedItem.styles';
 import Card from 'Components/Card';
 import {msToHours} from 'Utils/misc';
+import ThemeContext from 'Components/Theme';
 
 export interface Props {
     children?: React.ReactNode;
@@ -19,24 +20,28 @@ const StoryFeedItem: React.FC<Props> = ({
     stylesProp,
     onPress,
 }): React.ReactElement => {
-    let image;
+    let image: JSX.Element;
     if (story.urlToImage && story.urlToImage !== '') {
         image = <Image style={styles.Images} source={{uri: story.urlToImage}} />;
     }
     const hoursSincePublished = msToHours(Date.now() - Date.parse(story.publishedAt));
     return (
-        <Card onPress={onPress} stylesProp={[stylesProp, styles.Container]} key={key}>
-            <View style={[styles.ViewContainer]}>
-                {image}
-                <View style={[styles.Details]}>
-                    <Text numberOfLines={2} style={styles.Title}>{story.title}</Text>
-                    <View style={styles.SourceAgeContainer}>
-                        <Text style={styles.Source}>{story.source.name}</Text>
-                        <Text style={styles.Age}> {Math.round((hoursSincePublished * 10)) / 10} hours ago</Text>
+        <ThemeContext.Consumer>
+            {theme => (
+                <Card onPress={onPress} stylesProp={[stylesProp, styles.Container]} key={key}>
+                    <View style={[styles.ViewContainer, {backgroundColor: theme.FeedItem.backgroundColor}]}>
+                        {image}
+                        <View style={[styles.Details]}>
+                            <Text numberOfLines={2} style={[styles.Title, {color: theme.FeedItem.color}]}>{story.title}</Text>
+                            <View style={styles.SourceAgeContainer}>
+                                <Text style={styles.Source}>{story.source.name}</Text>
+                                <Text style={styles.Age}> {Math.round((hoursSincePublished * 10)) / 10} hours ago</Text>
+                            </View>
+                        </View>
                     </View>
-                </View>
-            </View>
-        </Card>
+                </Card>
+            )}
+        </ThemeContext.Consumer>
     );
 };
 

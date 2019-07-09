@@ -30,9 +30,8 @@ const StoryFeedItem: React.FC<Props> = ({
             {image}
             <View style={styles.TextContainer}>
                 <Text style={styles.Title}>{story.title}</Text>
-                <Text style={styles.Content}>
-                    {story.content}
-                </Text>
+                <Text style={styles.Content}>{story.content}</Text>
+                <Text>{story.url}</Text>
             </View>
         </DefaultLayout>
     );

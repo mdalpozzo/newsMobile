@@ -1,2 +1,5 @@
-import Theme from './Theme';
-export default Theme;
+import ThemeContext, {Theme} from './Theme';
+export {
+    Theme,
+};
+export default ThemeContext;
