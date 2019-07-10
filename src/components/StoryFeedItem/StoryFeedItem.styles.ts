@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         // height: 75,
     },
     ViewContainer: {
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         flexDirection: 'row',
         marginVertical: 5,
         height: 75,

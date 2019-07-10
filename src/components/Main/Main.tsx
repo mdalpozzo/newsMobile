@@ -21,10 +21,10 @@ import {
     getNews,
 } from './Main.actions';
 import { connect } from 'react-redux';
-import Home from 'Components/Home';
 import TestComponentB from 'Components/TestComponentB';
 import NavBar from 'Components/NavBar';
 import FeedNavigator from 'Components/FeedNavigator';
+import ThemeContext, {Theme} from 'Components/Theme';
 
 interface Props {
     view: string;
@@ -52,7 +52,6 @@ class Main extends Component<Props> {
         switch (view) {
             case HOME:
                 currentView = (
-                    // <Text>HELLO</Text>
                     <FeedNavigator />
                 );
                 break;
@@ -64,10 +63,12 @@ class Main extends Component<Props> {
         }        
 
         return (
-            <DefaultLayout stylesProp={styles.Container}>
-                {currentView}
-                <NavBar stylesProp={styles.NavBar} handleViewChange={this.handleViewChange} view={view}></NavBar>
-            </DefaultLayout>
+            <ThemeContext.Provider value={Theme.light}>
+                <DefaultLayout stylesProp={styles.Container}>
+                    {currentView}
+                    <NavBar stylesProp={styles.NavBar} handleViewChange={this.handleViewChange} view={view}></NavBar>
+                </DefaultLayout>
+            </ThemeContext.Provider>
         );
     }
 }
